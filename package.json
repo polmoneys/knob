@@ -1,0 +1,10 @@
+{
+  "name": "gsap-knob",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "knob",
+      "stories"
+    ]
+  }
+}

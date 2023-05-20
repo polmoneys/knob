@@ -1,0 +1,84 @@
+.group {
+  display: grid;
+  grid-template-areas: stack;
+  place-content: center;
+  place-items: center;
+  width: var(--width);
+  height: var(--width);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  background: var(--background);
+  webkit-clip-path: circle(var(--clipPath));
+  clip-path: circle(var(--clipPath));
+
+  --start: 0deg;
+  --end: 0deg;
+}
+
+.group > * {
+  grid-area: stack;
+}
+
+.group > *:first-child {
+  position: relative;
+}
+
+.group svg {
+  touch-action: none;
+  width: var(--width);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  overflow: visible;
+}
+
+.group g {
+  cursor: pointer;
+}
+
+.group.disabled {
+  opacity: 0.6;
+  filter: grayscale(90);
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+.labels {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  block-size: 100%;
+  inline-size: 100%;
+  pointer-events: none;
+  --labels-offset: -30px;
+  --labels-radius: calc((100% - var(--labels-offset)) / 2);
+  transform-origin: center center;
+  position: relative;
+}
+
+.group.disabled .labels {
+  font-size: 10px;
+}
+
+.labels > * {
+  --label-x: calc(50% + var(--labels-radius) * cos(var(--angle)));
+  --label-y: calc(50% + var(--labels-radius) * sin(var(--angle)));
+  display: grid;
+  height: var(--labels-offset);
+  left: var(--label-x);
+  place-content: center;
+  position: absolute;
+  top: var(--label-y);
+  width: var(--labels-offset);
+  font-weight: 700;
+  font-size: 70%;
+  transform: translate(-50%, -50%); /* Center the labels */
+}
+
+.rect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+  height: 100%;
+}
